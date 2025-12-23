@@ -1,0 +1,43 @@
+# Task List: K8s Sentinel Agent
+
+- [ ] Project Setup
+    - [ ] Create virtual environment and install dependencies (`langgraph`, `langchain`, `kubernetes`, `fastapi`, `uvicorn`).
+    - [ ] Set up project structure.
+- [ ] Implement Kubernetes Tools
+    - [ ] Create tool wrapper for K8s API client.
+    - [ ] Implement `get_cluster_health`.
+    - [ ] Implement `list_pods` with filtering.
+    - [ ] Implement `get_resource_usage` (nodes/pods).
+    - [ ] Implement `get_events`.
+    - [ ] Implement `get_logs`.
+- [ ] Implement Redis & Elastic Integrations
+    - [ ] Create `RedisTools`: Connect to Sentinel, check master/slaves, get metrics.
+    - [ ] Create `ElasticTools`: Query ES for application logs, check APM error rates.
+    - [ ] Create `KafkaTools`: Wrapper for `kcat` to check metadata, consumer lag, and sample messages.
+- [ ] Implement RAG Knowledge Base
+    - [ ] Design RAG pipeline (Git -> Embed -> VectorDB).
+    - [ ] Create `KnowledgeRefreshJob`: Clones repos, chunks files, updates vector store.
+    - [ ] Create `query_knowledge_base` tool for the agent.
+- [ ] Implement Event Historian
+    - [ ] Design Event Pipeline (K8s Watcher -> Kafka -> DB).
+    - [ ] Create `EventProducer`: Watches K8s events and pushes to Kafka.
+    - [ ] Create `EventConsumer`: Reads Kafka and saves to Postgres.
+    - [ ] Create `query_event_history` tool for the agent.
+- [ ] Infrastructure & Deployments
+    - [ ] Deploy Kafka (or Redpanda) and Postgres (with pgvector) if not present.
+    - [ ] Create CronJob manifest for RAG refresh.
+    - [ ] Create Deployment manfiests for Producer/Consumer.
+- [ ] Implement LangGraph Agent
+    - [ ] Define agent state.
+    - [ ] Configure LLM connection (Qwen3-4b integration).
+    - [ ] Define graph nodes and edges.
+    - [ ] Compile the graph.
+- [ ] API & Integration
+    - [ ] Create FastAPI server to expose the agent.
+    - [ ] Implement OpenAI-compatible endpoint.
+    - [ ] Integrate new RAG and History tools into Agent state/graph.
+- [ ] Deployment
+    - [ ] Create Dockerfile.
+    - [ ] Create Kubernetes manifests (Deployment, RBAC ServiceAccount).
+- [ ] Verification
+    - [ ] Detailed walkthrough of usage.
